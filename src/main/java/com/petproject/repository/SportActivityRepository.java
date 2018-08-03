@@ -10,5 +10,7 @@ public interface SportActivityRepository {
 
     SportActivity findActivity(String activityId);
 
-    void createSportActivity(SportActivity sportActivity);
+    SportActivity createSportActivity(SportActivity sportActivity);
+
+    SportActivity updateSportActivity(SportActivity sportActivity);
 }
