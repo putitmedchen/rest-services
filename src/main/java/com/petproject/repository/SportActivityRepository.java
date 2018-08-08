@@ -13,4 +13,6 @@ public interface SportActivityRepository {
     SportActivity createSportActivity(SportActivity sportActivity);
 
     SportActivity updateSportActivity(SportActivity sportActivity);
+
+    void deleteSportActivity(String activityId);
 }

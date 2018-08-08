@@ -53,11 +53,18 @@ public class SportActivityRepositoryStub implements SportActivityRepository {
 
     @Override
     public SportActivity updateSportActivity(SportActivity sportActivity) {
-        //search the DB to see weather such acitivty is present
+        //search the DB to see weather such activity is present
         //select * from Activities where id=*id*?
         //in case yes - update it
         //in case no - create it
         return sportActivity;
+    }
+
+    @Override
+    public void deleteSportActivity(String activityId){
+        //search the DB to see weather such activity is present
+        //in case yes - delete it
+        //delete * from Activities where activityId = activityId;
     }
 
 

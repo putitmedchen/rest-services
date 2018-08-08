@@ -19,22 +19,19 @@ public class SportActivityClient {
         client = ClientBuilder.newClient();
     }
 
-
     public SportActivity get(String id) {
         WebTarget target = client.target("http://localhost:8080/webapi/");
 
-//            SportActivity response = target.path("activities/" + id).request().get(SportActivity.class);
         Response response = target.path("activities/" + id).request(MediaType.APPLICATION_JSON_TYPE).get(Response.class);
 
         if (response.getStatus() != 200) {
             throw new RuntimeException(response.getStatus() + " : there was an error on server");
-
         }
 
         return response.readEntity(SportActivity.class);
     }
 
-    public List<SportActivity> get() {
+    public List<SportActivity> getAllActivities() {
         WebTarget target = client.target("http://localhost:8080/webapi/");
 
         List<SportActivity> response = target.path("activities/").request(MediaType.APPLICATION_JSON_TYPE).get(new GenericType<List<SportActivity>>() {
@@ -47,7 +44,6 @@ public class SportActivityClient {
     public SportActivity createActivity(SportActivity sportActivity) {
         WebTarget target = client.target("http://localhost:8080/webapi/");
 
-//            SportActivity response = target.path("activities/" + id).request().get(SportActivity.class);
         Response response = target.path("activities/activity").request(MediaType.APPLICATION_JSON).post(Entity.entity(sportActivity, MediaType.APPLICATION_JSON));
 
         if (response.getStatus() != 200) {
@@ -67,6 +63,18 @@ public class SportActivityClient {
         }
 
         return response.readEntity(SportActivity.class);
+    }
+
+    public void deleteActivity(String activityId) {
+        WebTarget target = client.target("http://localhost:8080/webapi/");
+
+        Response response = target.path("activities/"+ activityId).request(MediaType.APPLICATION_JSON).delete();
+
+        if (response.getStatus() != 200){
+            throw new RuntimeException(response.getStatus() + " : there was error on server");
+
+        }
+
     }
 }
 
